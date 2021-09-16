@@ -43,7 +43,7 @@ import java.util.Set;
  */
 public class FastThreadLocal<V> {
 
-    private static final int variablesToRemoveIndex = InternalThreadLocalMap.nextVariableIndex();
+    private static final int variablesToRemoveIndex = 0;
 
     /**
      * Removes all {@link FastThreadLocal} variables bound to the current thread.  This operation is useful when you
@@ -125,7 +125,7 @@ public class FastThreadLocal<V> {
     private final int index;
 
     public FastThreadLocal() {
-        index = InternalThreadLocalMap.nextVariableIndex();
+        index = InternalThreadLocalMap.get().nextVariableIndex();
     }
 
     /**
