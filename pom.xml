@@ -1019,7 +1019,7 @@
           <parameter>
             <ignoreMissingOldVersion>true</ignoreMissingOldVersion>
             <breakBuildOnBinaryIncompatibleModifications>true</breakBuildOnBinaryIncompatibleModifications>
-            <breakBuildOnSourceIncompatibleModifications>true</breakBuildOnSourceIncompatibleModifications>
+            <breakBuildOnSourceIncompatibleModifications>false</breakBuildOnSourceIncompatibleModifications>
             <oldVersionPattern>\d+\.\d+\.\d+\.Final</oldVersionPattern>
             <ignoreMissingClassesByRegularExpressions>
               <!-- ignore everything which is not part of netty itself as the plugin can not handle optional dependencies -->
