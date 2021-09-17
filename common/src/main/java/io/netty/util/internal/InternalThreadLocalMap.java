@@ -42,7 +42,7 @@ public final class InternalThreadLocalMap extends UnpaddedInternalThreadLocalMap
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(InternalThreadLocalMap.class);
     private static final ThreadLocal<InternalThreadLocalMap> slowThreadLocalMap =
             new ThreadLocal<InternalThreadLocalMap>();
-    private static final AtomicInteger nextIndex = new AtomicInteger();
+    private int nextIndex = 1;
 
     private static final int DEFAULT_ARRAY_LIST_INITIAL_CAPACITY = 8;
     private static final int STRING_BUILDER_INITIAL_SIZE;
@@ -133,17 +133,17 @@ public final class InternalThreadLocalMap extends UnpaddedInternalThreadLocalMap
         slowThreadLocalMap.remove();
     }
 
-    public static int nextVariableIndex() {
-        int index = nextIndex.getAndIncrement();
+    public int nextVariableIndex() {
+        int index = nextIndex++;
         if (index < 0) {
-            nextIndex.decrementAndGet();
+            nextIndex--;
             throw new IllegalStateException("too many thread-local indexed variables");
         }
         return index;
     }
 
-    public static int lastVariableIndex() {
-        return nextIndex.get() - 1;
+    public int lastVariableIndex() {
+        return nextIndex - 1;
     }
 
     private InternalThreadLocalMap() {
